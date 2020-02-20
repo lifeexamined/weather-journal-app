@@ -24,9 +24,10 @@ async function postStuff() {
         body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
 
-    const result = await response.json(); // parses JSON response into native JavaScript objects
-    console.log(result);
-    document.getElementById('content').innerHTML = `Weather: ${result.weather}, Notes: ${result.message}`;
+    const { date, description, message, temp } = await response.json(); // parses JSON response into native JavaScript objects
+    document.getElementById('temp').innerHTML = temp;
+    document.getElementById('date').innerHTML = date;
+    document.getElementById('content').innerHTML = `Weather: ${description}, Notes: ${message}`;
 }
 
 document.getElementById('generate').addEventListener('click', postStuff);
